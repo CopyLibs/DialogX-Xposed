@@ -5,7 +5,7 @@ import android.content.Context;
 import com.kongzue.dialogx.interfaces.DialogXStyle;
 import com.kongzue.dialogx.interfaces.ProgressViewInterface;
 import com.kongzue.dialogx.util.views.ProgressView;
-import com.kongzue.dialogxmaterialyou.R;
+import com.kongzue.dialogx.dialogxmaterialyou.R;
 
 /**
  * @author: Kongzue

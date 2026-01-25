@@ -3,11 +3,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    namespace "com.kongzue.dialogx.dialogxmaterialyou"
+    compileSdkVersion 33
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
