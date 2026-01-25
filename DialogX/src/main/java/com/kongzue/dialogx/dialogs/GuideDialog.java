@@ -312,6 +312,11 @@ public class GuideDialog extends CustomDialog {
     }
 
     //执行方法
+    public GuideDialog baseView(View baseView) {
+        super.baseView(baseView);
+        return this;
+    }
+
     public GuideDialog show() {
         super.show();
         return this;
