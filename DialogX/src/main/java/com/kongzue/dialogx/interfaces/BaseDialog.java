@@ -16,7 +16,6 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +45,7 @@ import com.kongzue.dialogx.util.DialogXFloatingWindowActivity;
 import com.kongzue.dialogx.util.TextInfo;
 import com.kongzue.dialogx.util.WindowUtil;
 import com.kongzue.dialogx.util.views.DialogXBaseRelativeLayout;
+import com.kongzue.dialogx.wrapper.ModuleUtil;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -552,9 +552,9 @@ public abstract class BaseDialog implements LifecycleOwner {
                 error("DialogX 未初始化(E3)。\n请检查是否在启动对话框前进行初始化操作，使用以下代码进行初始化：\nDialogX.init(context);\n\n另外建议您前往查看 DialogX 的文档进行使用：https://github.com/kongzue/DialogX");
                 return null;
             }
-            return LayoutInflater.from(getOwnActivity()).inflate(layoutId, null);
+            return ModuleUtil.getLayoutInflater(getOwnActivity()).inflate(layoutId, null);
         } else {
-            return LayoutInflater.from(getApplicationContext()).inflate(layoutId, null);
+            return ModuleUtil.getLayoutInflater(getApplicationContext()).inflate(layoutId, null);
         }
     }
 

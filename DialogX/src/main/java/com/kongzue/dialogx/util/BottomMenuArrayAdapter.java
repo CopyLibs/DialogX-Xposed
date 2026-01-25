@@ -19,6 +19,7 @@ import com.kongzue.dialogx.R;
 import com.kongzue.dialogx.dialogs.BottomMenu;
 import com.kongzue.dialogx.interfaces.MenuIconAdapter;
 import com.kongzue.dialogx.interfaces.SELECT_MODE;
+import com.kongzue.dialogx.wrapper.ModuleUtil;
 
 import java.util.List;
 
@@ -70,7 +71,7 @@ public class BottomMenuArrayAdapter extends BaseAdapter {
         ViewHolder viewHolder = null;
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            LayoutInflater mInflater = LayoutInflater.from(context);
+            LayoutInflater mInflater = ModuleUtil.getLayoutInflater(context);
 
             int resourceId = R.layout.item_dialogx_material_bottom_menu_normal_text;
             if (bottomMenu.getStyle().overrideBottomDialogRes() != null) {
