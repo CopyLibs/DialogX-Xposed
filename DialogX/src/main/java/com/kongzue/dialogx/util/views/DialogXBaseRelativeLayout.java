@@ -16,9 +16,13 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.RelativeLayout;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcherOwner;
+import androidx.activity.ViewTreeOnBackPressedDispatcherOwner;
 import androidx.annotation.Px;
 import androidx.core.graphics.Insets;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.kongzue.dialogx.DialogX;
 import com.kongzue.dialogx.R;
@@ -255,6 +259,7 @@ public class DialogXBaseRelativeLayout extends RelativeLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
+        setBackPressedDispatcher(true);
         if (!isInEditMode()) {
             if (getParentDialog() == null || getParentDialog().getOwnActivity() == null) return;
             if (onLifecycleCallBack != null) {
@@ -267,6 +272,28 @@ public class DialogXBaseRelativeLayout extends RelativeLayout {
         }
     }
 
+    OnBackPressedCallback onBackPressedCallback;
+
+    private void setBackPressedDispatcher(boolean bind) {
+        if (bind) {
+            OnBackPressedDispatcherOwner owner = ViewTreeOnBackPressedDispatcherOwner.get(this);
+            if (owner == null) return;
+            owner.getOnBackPressedDispatcher().addCallback((LifecycleOwner) getContext(),
+                    onBackPressedCallback= new OnBackPressedCallback(true) {
+                        @Override
+                        public void handleOnBackPressed() {
+                            if (onBackPressedListener != null && !parentDialog.get().isHide()) {
+                                onBackPressedListener.onBackPressed();
+                            }
+                        }
+                    });
+        }else{
+            if (onBackPressedCallback!=null){
+                onBackPressedCallback.remove();
+            }
+        }
+    }
+
     @Override
     protected void onDetachedFromWindow() {
         if (onLifecycleCallBack != null) {
@@ -275,6 +302,7 @@ public class DialogXBaseRelativeLayout extends RelativeLayout {
         if (fitSystemBarUtils != null) {
             fitSystemBarUtils.recycle();
         }
+        setBackPressedDispatcher(false);
         fitSystemBarUtils = null;
         onSafeInsetsChangeListener = null;
         super.onDetachedFromWindow();
