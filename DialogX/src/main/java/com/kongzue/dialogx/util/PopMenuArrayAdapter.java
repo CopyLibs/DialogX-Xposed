@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.kongzue.dialogx.R;
 import com.kongzue.dialogx.dialogs.PopMenu;
 import com.kongzue.dialogx.interfaces.MenuIconAdapter;
+import com.kongzue.dialogx.wrapper.ModuleUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class PopMenuArrayAdapter extends BaseAdapter {
         this.popMenu = popMenu;
         this.menuList = menuList;
         this.context = context;
-        mInflater = LayoutInflater.from(context);
+        mInflater = ModuleUtil.getLayoutInflater(context);
     }
     
     public List<CharSequence> getMenuList() {

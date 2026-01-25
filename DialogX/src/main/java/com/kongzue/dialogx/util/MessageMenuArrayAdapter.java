@@ -19,6 +19,7 @@ import com.kongzue.dialogx.R;
 import com.kongzue.dialogx.dialogs.MessageMenu;
 import com.kongzue.dialogx.interfaces.MenuIconAdapter;
 import com.kongzue.dialogx.interfaces.SELECT_MODE;
+import com.kongzue.dialogx.wrapper.ModuleUtil;
 
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class MessageMenuArrayAdapter extends BaseAdapter {
         MessageMenuArrayAdapter.ViewHolder viewHolder = null;
         if (convertView == null) {
             viewHolder = new MessageMenuArrayAdapter.ViewHolder();
-            LayoutInflater mInflater = LayoutInflater.from(context);
+            LayoutInflater mInflater = ModuleUtil.getLayoutInflater(context);
 
             int resourceId = R.layout.item_dialogx_material_bottom_menu_normal_text;
             if (messageMenu.getStyle().overrideBottomDialogRes() != null) {
