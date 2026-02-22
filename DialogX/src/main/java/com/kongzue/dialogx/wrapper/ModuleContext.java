@@ -2,6 +2,7 @@ package com.kongzue.dialogx.wrapper;
 
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 
 public class ModuleContext extends ContextWrapper {
@@ -9,6 +10,13 @@ public class ModuleContext extends ContextWrapper {
 
     public ModuleContext(Context base) {
         super(base);
+    }
+
+    @Override
+    public Resources getResources() {
+        Resources res = super.getResources();
+        ModuleUtil.injectModuleAppResources(res);
+        return res;
     }
 
     @Override

@@ -24,6 +24,7 @@ implementation("com.github.CopyLibs.DialogX-Xposed:DialogX:$version")
 
 ```kotlin
 DialogX.init(context)
+ModuleUtil.modulePath = "模块安装包文件路径"
 ```
 
 ### 对话框

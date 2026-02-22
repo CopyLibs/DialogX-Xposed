@@ -1,14 +1,19 @@
 package com.kongzue.dialogx.wrapper;
 
 public class ModuleClassLoader extends ClassLoader {
-    public static ModuleClassLoader getInstance() {
-        return new ModuleClassLoader();
-    }
-
+    private static ModuleClassLoader instance;
     private final ClassLoader moduleLoader;
 
-    public ModuleClassLoader() {
-        moduleLoader = getClass().getClassLoader();
+    private ModuleClassLoader(ClassLoader parent) {
+        super(parent);
+        this.moduleLoader = parent;
+    }
+
+    public static ModuleClassLoader getInstance() {
+        if (instance == null) {
+            instance = new ModuleClassLoader(ModuleClassLoader.class.getClassLoader());
+        }
+        return instance;
     }
 
     @Override

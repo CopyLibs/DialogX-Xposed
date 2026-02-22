@@ -9,19 +9,23 @@ import android.view.LayoutInflater;
 import java.lang.reflect.Method;
 
 public class ModuleUtil {
+    public static String modulePath = "";
+
+    /** @noinspection JavaReflectionMemberAccess*/
     @SuppressLint("DiscouragedPrivateApi")
-    public static void injectModuleAppResources(Resources hostResources, String moduleAppFilePath) {
+    public static void injectModuleAppResources(Resources hostResources) {
+        if (modulePath.isEmpty()) return;
         try {
             AssetManager assetManager = hostResources.getAssets();
             Method method = AssetManager.class.getDeclaredMethod("addAssetPath", String.class);
             method.setAccessible(true);
-            method.invoke(assetManager, moduleAppFilePath);
+            method.invoke(assetManager, modulePath);
         } catch (Throwable ignore) {
         }
     }
 
-    public static void injectModuleAppResources(Context hostContext, String moduleAppFilePath) {
-        injectModuleAppResources(hostContext.getResources(), moduleAppFilePath);
+    public static void injectModuleAppResources(Context hostContext) {
+        injectModuleAppResources(hostContext.getResources());
     }
 
     public static Context getContext(Context context) {
