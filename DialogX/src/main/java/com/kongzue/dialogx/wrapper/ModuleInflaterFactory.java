@@ -29,6 +29,14 @@ public class ModuleInflaterFactory implements LayoutInflater.Factory {
             view = (View) constructor.newInstance(context, attrs);
         } catch (Exception ignored) {
         }
-        return view != null ? view : mOriginFactory.onCreateView(name, context, attrs);
+        if (view != null) {
+            return view;
+        } else {
+            if (mOriginFactory != null) {
+                return mOriginFactory.onCreateView(name, context, attrs);
+            } else {
+                return null;
+            }
+        }
     }
 }

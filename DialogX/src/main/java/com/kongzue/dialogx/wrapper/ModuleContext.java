@@ -30,8 +30,9 @@ public class ModuleContext extends ContextWrapper {
         if (obj instanceof LayoutInflater) {
             if (mLayoutInflater == null) {
                 mLayoutInflater = ((LayoutInflater) obj).cloneInContext(this);
-                ModuleInflaterFactory factory = new ModuleInflaterFactory(mLayoutInflater.getFactory(), getClassLoader());
-                mLayoutInflater.setFactory(factory);
+                LayoutInflater.Factory factory = mLayoutInflater.getFactory();
+                ModuleInflaterFactory moduleFactory = new ModuleInflaterFactory(factory, getClassLoader());
+                mLayoutInflater.setFactory(moduleFactory);
             }
             return mLayoutInflater;
         }
