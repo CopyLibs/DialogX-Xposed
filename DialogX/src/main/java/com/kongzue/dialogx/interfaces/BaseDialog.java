@@ -633,12 +633,12 @@ public abstract class BaseDialog implements LifecycleOwner {
 
     public Resources getResources() {
         if (getOwnActivity() != null) {
-            return getOwnActivity().getResources();
+            return ModuleUtil.getContext(getOwnActivity()).getResources();
         }
         if (getApplicationContext() == null) {
             return Resources.getSystem();
         }
-        return getApplicationContext().getResources();
+        return ModuleUtil.getContext(getApplicationContext()).getResources();
     }
 
     public int dip2px(float dpValue) {
