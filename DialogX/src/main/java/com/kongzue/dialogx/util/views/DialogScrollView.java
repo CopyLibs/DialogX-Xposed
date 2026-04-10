@@ -4,9 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
-import androidx.core.widget.NestedScrollView;
-
+import android.widget.ScrollView;
 import com.kongzue.dialogx.interfaces.ScrollController;
 
 /**
@@ -16,7 +14,7 @@ import com.kongzue.dialogx.interfaces.ScrollController;
  * @mail: myzcxhh@live.cn
  * @createTime: 2020/11/17 15:29
  */
-public class DialogScrollView extends NestedScrollView implements ScrollController {
+public class DialogScrollView extends ScrollView implements ScrollController {
 
     public DialogScrollView(Context context) {
         super(context);
@@ -28,6 +26,10 @@ public class DialogScrollView extends NestedScrollView implements ScrollControll
 
     public DialogScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    public DialogScrollView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     boolean lockScroll;
