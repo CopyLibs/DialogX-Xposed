@@ -37,22 +37,34 @@ MessageDialog.build()
     .show()
 ```
 
-### 自定义布局
+### 自定义对话框
 
 ```kotlin
-MessageDialog.build()
-    .setTitle("标题")
-    .setCustomView(object : OnBindView<MessageDialog>(R.layout.module_setting_dialog) {
-        override fun onBind(dialog: MessageDialog, v: View) {}
+CustomDialog.build()
+    .setMaskColor(Color.parseColor("#4D000000"))
+    .setCustomView(object : OnBindView<CustomDialog>(R.layout.module_setting_dialog) {
+        override fun onBind(dialog: CustomDialog, v: View) {}
     })
     .show()
 
-MessageDialog.build()
-    .setTitle("标题")
-    .setCustomView(object : OnBindingView<MessageDialog, ModuleSettingDialogBinding>() {
-        override fun onBind(dialog: MessageDialog, v: View, binding: ModuleSettingDialogBinding) {}
+CustomDialog.build()
+    .setMaskColor(Color.parseColor("#4D000000"))
+    .setCustomView(object : OnBindingView<CustomDialog, ModuleSettingDialogBinding>() {
+        override fun onBind(dialog: CustomDialog, v: View, binding: ModuleSettingDialogBinding) {}
     })
     .show()
+```
+
+### 模块辅助方法
+
+```kotlin
+ModuleUtil.injectModuleAppResources(resources)
+
+ModuleUtil.injectModuleAppResources(context)
+
+ModuleUtil.getContext(context)
+
+ModuleUtil.getLayoutInflater(context)
 ```
 
 ## 致谢
